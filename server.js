@@ -2,9 +2,10 @@ const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
 const path = require('path');
+const c_string = require('./scripts/variable.js');
 const EventHubReader = require('./scripts/event-hub-reader.js');
-const iotHubConnectionString = 'HostName=assignment-hub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=UnBQQTZBTAP9P9thocsp2rJtUBrbnlUTLUbF15ZEb2g='
-const eventHubConsumerGroup = 'consumerflavia';
+const iotHubConnectionString = c_string.conn_string;
+const eventHubConsumerGroup = c_string.consumer;
 
 // Redirect requests to the public subdirectory to the root
 const app = express();
