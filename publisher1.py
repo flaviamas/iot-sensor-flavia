@@ -16,7 +16,6 @@ if __name__ == "__main__":
     device_client.connect()
     # Connect the device client.
     while(True):
-        time.sleep(15)
         file_j = {'temperature': random.randrange(-50, 50),
                 'humidity': random.randrange(0, 100),
                 'windintensity':random.randrange(0,100),
@@ -27,5 +26,6 @@ if __name__ == "__main__":
         print("Sending message...")
         device_client.send_message(json.dumps(file_j))
         print("Message successfully sent!")
+        time.sleep(15)
     # finally, disconnect
     device_client.disconnect()
