@@ -11,6 +11,7 @@ const CosmosClient = require("@azure/cosmos").CosmosClient;
 const config = require("./config");
 const dbContext = require("./scripts/databaseContext");
 var message;
+var complquery = new String;
 // Redirect requests to the public subdirectory to the root
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
@@ -73,19 +74,26 @@ async function entry(message) {
   await dbContext.create(client, databaseId, containerId);
 
   try {
-    console.log(`Querying container: Items`);
-
-    // query to return all items
-    const querySpec = {
-      query: "SELECT * from c"
-    };
 
 
     const { resource: createdItem } = await container.items.create(message);
 
     console.log('\r\nCreated new item');
-
-
+    const querySpec = {
+      query: "SELECT * from c"
+    };
+  
+    // read all items in the Items container
+    const { resources: items } = await container.items
+      .query(querySpec)
+      .fetchAll();
+  
+    items.forEach(item => {
+      complquery.concat(`${item.IotData['temperature']}`);
+      complquery.concat('\n');
+      
+    });
+    return complquery;
 
   } catch (err) {
     console.log(err.message);

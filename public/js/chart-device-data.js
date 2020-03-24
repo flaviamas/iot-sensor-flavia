@@ -187,6 +187,7 @@ $(document).ready(() => {
       data: chartData,
       options: chartOptions,
     });
+  const showing = document.getElementById('showing');
 
   // Manage a list of devices in the UI, and update which device data the chart is showing
   // based on selection
@@ -244,6 +245,8 @@ $(document).ready(() => {
           listOfDevices.selectedIndex = 0;
           OnSelectionChange();
         }
+
+        
       }
 
       myLineChart.update();
@@ -251,5 +254,8 @@ $(document).ready(() => {
       console.error(err);
     }
   };
+
+  
+  
 });
 

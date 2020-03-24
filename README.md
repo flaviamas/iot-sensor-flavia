@@ -4,7 +4,7 @@
 The project consists in the creation of an architecture based on the MQTT protocol to transmit data. The following code consists in two different publishers that send data to the MQTT Broker and then the data is visualized on a web app. The MQTT Broker is realized via AzureIoTHub. 
 ## Technologies 
 * [Azure IoT](https://azure.microsoft.com/it-it/overview/iot/)
-* [NodeJs]()
+* [NodeJs](q)
 
 ## Overview
 The publisher is a simulated device that publishes some random values on a MQTT topic in the AzureIoT Hub.
