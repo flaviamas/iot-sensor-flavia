@@ -4,12 +4,13 @@ import random
 import datetime
 import json
 import os
+import connectionstring
 from azure.iot.device import IoTHubDeviceClient, MethodResponse
 
 
 if __name__ == "__main__":
     # Fetch the connection string from an enviornment variable
-    conn_str = "HostName=assignment-hub.azure-devices.net;DeviceId=mydevice2;SharedAccessKey=h3mGZrP1HR7vXqX7GCoIlwsjM4UhGq5v0n4p9mpsX38="
+    conn_str = connectionstring.connect1
 
     # Create instance of the device client using the connection string
     device_client = IoTHubDeviceClient.create_from_connection_string(conn_str)

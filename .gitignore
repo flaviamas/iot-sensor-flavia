@@ -42,3 +42,4 @@ jspm_packages
 #connection
 variable.js
 config.js
+connectionstring.py

@@ -90,11 +90,10 @@ async function entry(message) {
       .fetchAll();
 
     items.forEach(item => {
-      complquery.concat(`${item.IotData['temperature']}`);
-      complquery.concat('\n');
+      console.log(`${item.IotData['temperature']}`);
+      console.log('\n');
 
     });
-    return complquery;
 
   } catch (err) {
     console.log(err.message);
