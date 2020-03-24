@@ -5,13 +5,14 @@ const path = require('path');
 var randomstring = require("randomstring");
 const c_string = require('./scripts/variable.js');
 const EventHubReader = require('./scripts/event-hub-reader.js');
-const iotHubConnectionString = c_string.conn_string;
-const eventHubConsumerGroup = c_string.consumer;
+
 const CosmosClient = require("@azure/cosmos").CosmosClient;
 const config = require("./config");
 const dbContext = require("./scripts/databaseContext");
 var message;
-var complquery = new String;
+//get the hub connection string
+const iotHubConnectionString = c_string.conn_string;
+const eventHubConsumerGroup = c_string.consumer;
 // Redirect requests to the public subdirectory to the root
 const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
@@ -22,7 +23,7 @@ app.use((req, res /* , next */) => {
 
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
-
+//open a connection for every client that requires the service
 wss.broadcast = (data) => {
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN) {
@@ -35,7 +36,7 @@ wss.broadcast = (data) => {
     }
   });
 };
-
+//listen on port 3000
 server.listen(process.env.PORT || '3000', () => {
   console.log('Listening on %d.', server.address().port);
 });
