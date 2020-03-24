@@ -19,7 +19,7 @@ const iotHubConnectionString = <your connection string>;
 const eventHubConsumerGroup = <your consumer group>;
 ```
 To save the values inside a CosmosDB database you also need to create a new `file config.js` and writing 
-`
+```
 const config = {
     endpoint: "Your Endpoint",
     key: "Your primary key",
@@ -29,8 +29,15 @@ const config = {
   };
   
   module.exports = config;
-`
-now you need to build and run the server by using `npm start`
+```
+now you need to build and run the server by using `npm start`.
+
+At this point to run the publisher you need to add your Device connection string to the python code, both in `Publisher.py`and `Publisher1.py`
+```
+conn_str = "HostName=################"
+
+```
+Now you just have to run the python code, connect on your browser on `localhost:3000` and you'll see the real time data of your device
 
 # Other Links
 - [Hands-on Tutorial]()
