@@ -17,10 +17,10 @@ if __name__ == "__main__":
     # Connect the device client.
     while(True):
         file_j = {'temperature': random.randrange(-50, 50),
-                'humidity': random.randrange(0, 100),
-                'windintensity':random.randrange(0,100),
-                'winddirection':random.randrange(0,360),
-                'rain':random.randrange(0,50)}
+                  'humidity': random.randrange(0, 100),
+                  'windintensity': random.randrange(0, 100),
+                  'winddirection': random.randrange(0, 360),
+                  'rain': random.randrange(0, 50)}
         print((json.dumps(file_j)))
         # Send a single message
         print("Sending message...")

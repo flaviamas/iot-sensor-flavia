@@ -52,7 +52,7 @@ const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsum
         MessageDate: date || Date.now().toISOString(),
         DeviceId: deviceId,
       };
-      
+
       message = payload;
       entry(message);
       wss.broadcast(JSON.stringify(payload));
@@ -83,16 +83,16 @@ async function entry(message) {
     const querySpec = {
       query: "SELECT * from c"
     };
-  
+
     // read all items in the Items container
     const { resources: items } = await container.items
       .query(querySpec)
       .fetchAll();
-  
+
     items.forEach(item => {
       complquery.concat(`${item.IotData['temperature']}`);
       complquery.concat('\n');
-      
+
     });
     return complquery;
 
