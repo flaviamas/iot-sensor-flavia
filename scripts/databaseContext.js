@@ -1,4 +1,4 @@
-const config = require("../config");
+const config = require("../SetUp/config.js");
 const CosmosClient = require("@azure/cosmos").CosmosClient;
 
 /*
