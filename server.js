@@ -1,3 +1,5 @@
+/*request of all the modules */
+
 const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
@@ -45,6 +47,7 @@ server.listen(process.env.PORT || '3000', () => {
 const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsumerGroup);
 
 (async () => {
+  //when connected to the hub read the message
   await eventHubReader.startReadMessage((message, date, deviceId) => {
     try {
       const payload = {
@@ -57,7 +60,8 @@ const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsum
       //write the message inside the cosmos DB
       entry(payload);
       messagew = JSON.stringify(payload);
-      //save it in a JSON file
+      //save it in a JSON file, if it is the first time you receive some data create a new file
+      //otherwise just append the new data
       if (count == 0) {
         fs.writeFile('output.json', messagew, 'utf8', function (err) {
           if (err)
@@ -70,10 +74,9 @@ const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsum
           if (err) {
             console.log('errore scrittura file');
           }
-
-
         });
       }
+
       wss.broadcast(messagew);
     } catch (err) {
       console.error('Error broadcasting: [%s] from [%s].', err, message);
@@ -81,7 +84,7 @@ const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsum
   });
 })().catch();
 
-
+//asynchronous function to open the database and write on it 
 async function entry(message) {
   const { endpoint, key, databaseId, containerId } = config;
 
@@ -94,19 +97,9 @@ async function entry(message) {
   await dbContext.create(client, databaseId, containerId);
 
   try {
-
-
+    //insert the item inside the database
     const { resource: createdItem } = await container.items.create(message);
-
-    console.log('\r\nCreated new item');
-    const querySpec = {
-      query: "SELECT * from c"
-    };
-
-    // read all items in the Items container
-    const { resources: items } = await container.items
-      .query(querySpec)
-      .fetchAll();
+    
   } catch (err) {
     console.log(err.message);
   }

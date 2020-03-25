@@ -14,10 +14,10 @@ class EventHubReader {
 
   async startReadMessage(startReadMessageCallback) {
     try {
+      //create the connection to the hub specified inside the conncetion string
       const client = await EventHubClient.createFromIotHubConnectionString(this.connectionString);
       console.log('Successfully created the EventHub Client from IoT Hub connection string.');
       this.eventHubClient = client;
-
       const partitionIds = await this.eventHubClient.getPartitionIds();
       console.log('The partition ids are: ', partitionIds);
 
@@ -26,6 +26,7 @@ class EventHubReader {
       };
 
       const onMessage = (message) => {
+        //when receive a message call the callback funcition
         const deviceId = message.annotations['iothub-connection-device-id'];
         return startReadMessageCallback(message.body, message.enqueuedTimeUtc, deviceId);
       };

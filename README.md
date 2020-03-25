@@ -18,7 +18,7 @@ Now add your connection string inside the `server.js` module
 const iotHubConnectionString = <your connection string>;
 const eventHubConsumerGroup = <your consumer group>;
 ```
-To save the values inside a CosmosDB database you also need to create a new `file config.js` and writing 
+To save the values inside a CosmosDB database you also need to create a new file inside the set up folder called `config.js` and write
 ```
 const config = {
     endpoint: "Your Endpoint",
