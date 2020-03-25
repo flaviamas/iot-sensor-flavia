@@ -13,12 +13,14 @@ chart.
 # How to Use
 Downoald the Repository, install all the node dependencies that you'll need by using the command 
 `npm install`.
-Now add your connection string inside the `server.js` module
+Now add your connection string inside a `variable.js` module in the SetUp folder
 ```javascript
-const iotHubConnectionString = <your connection string>;
-const eventHubConsumerGroup = <your consumer group>;
+module.exports={
+    'conn_string' :'Your host string',
+    'consumer' : 'Your Consumer Name'
+}
 ```
-To save the values inside a CosmosDB database you also need to create a new file inside the set up folder called `config.js` and write
+To save the values inside a CosmosDB database you also need to create a new file inside the setUp folder called `config.js` and write
 ```
 const config = {
     endpoint: "Your Endpoint",
@@ -40,5 +42,5 @@ conn_str = "HostName=################"
 Now you just have to run the python code, connect on your browser on `localhost:3000` and you'll see the real time data of your device
 
 # Other Links
-- [Hands-on Tutorial]()
-- [Demo Video]()
+- [Hands-on Tutorial](https://www.linkedin.com/pulse/environment-sensors-azureiot-hub-mqtt-protocol-flavia-masoni/?published=t)
+- [Demo Video](https://www.linkedin.com/pulse/environment-sensors-azureiot-hub-mqtt-protocol-flavia-masoni/?published=t)
