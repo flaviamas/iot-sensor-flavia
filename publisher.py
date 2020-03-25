@@ -13,7 +13,7 @@ if __name__ == "__main__":
     conn_str = connectionstring.connect1
 
     # Create instance of the device client using the connection string
-    device_client = IoTHubDeviceClient.create_from_connection_string(conn_str)
+    device_client = IoTHubDeviceClient.create_from_connection_string(conn_str,websockets = True)
     device_client.connect()
     # Connect the device client.
     while(True):
