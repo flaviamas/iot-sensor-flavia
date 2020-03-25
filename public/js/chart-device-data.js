@@ -6,7 +6,7 @@ $(document).ready(() => {
   // if deployed to a site supporting SSL, use wss://
   const protocol = document.location.protocol.startsWith('https') ? 'wss://' : 'ws://';
   const webSocket = new WebSocket(protocol + location.host);
-  
+
 
   // A class for holding the last N points of telemetry for a device
   class DeviceData {
@@ -225,13 +225,13 @@ $(document).ready(() => {
       const existingDeviceData = trackedDevices.findDevice(messageData.DeviceId);
 
       if (existingDeviceData) {
-        existingDeviceData.addData(messageData.MessageDate, messageData.IotData.temperature, messageData.IotData.humidity, messageData.IotData.windintensity, messageData.IotData.winddirection,messageData.IotData.rain);
+        existingDeviceData.addData(messageData.MessageDate, messageData.IotData.temperature, messageData.IotData.humidity, messageData.IotData.windintensity, messageData.IotData.winddirection, messageData.IotData.rain);
       } else {
         const newDeviceData = new DeviceData(messageData.DeviceId);
         trackedDevices.devices.push(newDeviceData);
         const numDevices = trackedDevices.getDevicesCount();
         deviceCount.innerText = numDevices === 1 ? `${numDevices} device` : `${numDevices} devices`;
-        newDeviceData.addData(messageData.MessageDate, messageData.IotData.temperature, messageData.IotData.humidity, messageData.IotData.windintensity, messageData.IotData.winddirection,messageData.IotData.rain);
+        newDeviceData.addData(messageData.MessageDate, messageData.IotData.temperature, messageData.IotData.humidity, messageData.IotData.windintensity, messageData.IotData.winddirection, messageData.IotData.rain);
 
         // add device to the UI list
         const node = document.createElement('option');
@@ -246,7 +246,7 @@ $(document).ready(() => {
           OnSelectionChange();
         }
 
-        
+
       }
 
       myLineChart.update();
@@ -255,7 +255,7 @@ $(document).ready(() => {
     }
   };
 
-  
-  
+
+
 });
 
