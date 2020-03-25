@@ -43,4 +43,4 @@ Now you just have to run the python code, connect on your browser on `localhost:
 
 # Other Links
 - [Hands-on Tutorial](https://www.linkedin.com/pulse/environment-sensors-azureiot-hub-mqtt-protocol-flavia-masoni/?published=t)
-- [Demo Video](https://www.linkedin.com/pulse/environment-sensors-azureiot-hub-mqtt-protocol-flavia-masoni/?published=t)
+- [Demo Video](https://www.youtube.com/watch?v=fYQqH0yyTSQ&t=6s)
