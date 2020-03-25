@@ -5,10 +5,11 @@ const path = require('path');
 var randomstring = require("randomstring");
 const c_string = require('./scripts/variable.js');
 const EventHubReader = require('./scripts/event-hub-reader.js');
-
+var count = 0;
 const CosmosClient = require("@azure/cosmos").CosmosClient;
 const config = require("./config");
 const dbContext = require("./scripts/databaseContext");
+const fs = require('fs');
 var message;
 //get the hub connection string
 const iotHubConnectionString = c_string.conn_string;
@@ -53,9 +54,27 @@ const eventHubReader = new EventHubReader(iotHubConnectionString, eventHubConsum
         DeviceId: deviceId,
       };
 
-      message = payload;
-      entry(message);
-      wss.broadcast(JSON.stringify(payload));
+      //write the message inside the cosmos DB
+      entry(payload);
+      messagew = JSON.stringify(payload);
+      //save it in a JSON file
+      if (count == 0) {
+        fs.writeFile('output.json', messagew, 'utf8', function (err) {
+          if (err)
+            console.log('errore scrittura file');
+        });
+        count = 1;
+      }
+      else {
+        fs.appendFile('output.json', messagew, 'utf8', function (err) {
+          if (err) {
+            console.log('errore scrittura file');
+          }
+
+
+        });
+      }
+      wss.broadcast(messagew);
     } catch (err) {
       console.error('Error broadcasting: [%s] from [%s].', err, message);
     }
@@ -88,13 +107,6 @@ async function entry(message) {
     const { resources: items } = await container.items
       .query(querySpec)
       .fetchAll();
-
-    items.forEach(item => {
-      console.log(`${item.IotData['temperature']}`);
-      console.log('\n');
-
-    });
-
   } catch (err) {
     console.log(err.message);
   }

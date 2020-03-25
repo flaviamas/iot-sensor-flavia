@@ -13,7 +13,6 @@ async function create(client, databaseId, containerId) {
   const { database } = await client.databases.createIfNotExists({
     id: databaseId
   });
-  console.log(`Created database:\n${database.id}\n`);
 
   /**
    * Create the container if it does not exist
@@ -25,7 +24,6 @@ async function create(client, databaseId, containerId) {
       { offerThroughput: 400 }
     );
 
-  console.log(`Created container:\n${container.id}\n`);
 }
 
 module.exports = { create };
