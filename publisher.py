@@ -10,13 +10,18 @@ from azure.iot.device import IoTHubDeviceClient, MethodResponse
 
 def on_message(client, userdata, message):
 
-        print((json.dumps(message.payload)))
-        # Send a single message
-        print("Sending message...")
-        device_client.send_message(json.dumps(message.payload))
-        print("Message successfully sent!")
-        time.sleep(5)
+	#print((json.dumps(message.payload)))
+	# Send a single message
+	print("received message "+str(message.payload))
+	#device_client.send_message(json.dumps(message.payload))
 
+
+        
+def on_connect(client, userdata, flags, rc):
+	 
+	print("Connected with result code "+str(rc))
+	mqttc.subscribe("device")
+	
 if __name__ == "__main__":
     # Fetch the connection string from an enviornment variable
     conn_str = connectionstring.connect1
@@ -27,12 +32,14 @@ if __name__ == "__main__":
     device_client.connect()
     #create an istance to connect to mqtt-sn broker
     mqttc = mqtt.Client()
+    
     #connect to the mqtt-sn broker
-    mqttc.connect("localhost",1885,60)
-   # mqttc.loop_start()
-
+    mqttc.connect('fec0:affe::1',1886,60)
+    mqttc.on_connect = on_connect
     mqttc.on_message = on_message
-
+    mqttc.loop_forever()
+	
+		
 
   
  
