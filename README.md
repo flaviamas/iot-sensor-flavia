@@ -1,6 +1,6 @@
 
 
-# Sending sensor data to AzureIoTHUB using MQTT 
+# Sending sensor data to Azure IoT HUB using MQTT 
 The project consists in the creation of an architecture based on the MQTT protocol to transmit data. The following code consists in two different publishers that send data to the MQTT Broker and then the data is visualized on a web app. The MQTT Broker is realized via AzureIoTHub. 
 ## Technologies 
 * [Azure IoT](https://azure.microsoft.com/it-it/overview/iot/)
