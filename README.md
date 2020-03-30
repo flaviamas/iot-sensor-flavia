@@ -42,5 +42,7 @@ conn_str = "HostName=################"
 Now you just have to run the python code, connect on your browser on `localhost:3000` and you'll see the real time data of your device
 
 # Other Links
+## Links for the First Homework
 - [Hands-on Tutorial](https://www.linkedin.com/pulse/environment-sensors-azureiot-hub-mqtt-protocol-flavia-masoni/?published=t)
 - [Demo Video](https://www.youtube.com/watch?v=fYQqH0yyTSQ&t=6s)
+## Links for the Second Homework
