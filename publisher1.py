@@ -27,6 +27,6 @@ if __name__ == "__main__":
         print("Sending message...")
         device_client.send_message(json.dumps(file_j))
         print("Message successfully sent!")
-        time.sleep(15)
+        time.sleep(5)
     # finally, disconnect
     device_client.disconnect()
