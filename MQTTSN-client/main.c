@@ -138,7 +138,7 @@ static int start_pub(int argc, char **argv)
 
     while (1)
     {
-        int temperature = random_uint32_range(0, 50);
+        int temperature = random_uint32_range(0, 100);
         int h = random_uint32_range(0, 100);
         int wd = random_uint32_range(0, 360);
         int wi = random_uint32_range(0, 100);
@@ -151,6 +151,7 @@ static int start_pub(int argc, char **argv)
                    t.name, (int)t.id);
             return 1;
         }
+
 
         printf("Published %i bytes to topic '%s [%i]'\n",
                sizeof(values), t.name, t.id);

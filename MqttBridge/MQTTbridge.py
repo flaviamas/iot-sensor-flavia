@@ -10,16 +10,19 @@ from azure.iot.device import IoTHubDeviceClient, MethodResponse
 
 def on_message(client, userdata, message):
 
-	
 	value = message.payload
-	print("data  "+str(value))
-	#intvalue = str(value,'utf-8')
-	intvalue = int.from_bytes(value,'little')
-	print(str(intvalue))
-	jsonfile = {'device':intvalue}
-	print("sending message to the hub")
+	print("data  "+str(value[0]))
+	temp = int(str(value[0]))-50
+	hum = int(str(value[1]))
+	windint = int(str(value[2]))
+	winddir = int(str(value[3]))
+	rain = int(str(value[4]))
+	print("temp: "+str(temp)+"hum "+str(hum)+"windint "+str(windint)+"windir"+str(winddir)+"rain"+str(rain))
+	jsonfile = {'temperature': temp,'humidity':hum,'windintensity':windint,'winddirection':winddir,'rain':rain}
+	print("sending message to the hub")	
 	device_client.send_message(json.dumps(jsonfile))
 	print("sent")
+		
 
         
 def on_connect(client, userdata, flags, rc):
