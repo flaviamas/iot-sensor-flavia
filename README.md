@@ -10,7 +10,7 @@ The project consists in the creation of an architecture based on the MQTT protoc
 The publisher is a simulated device that publishes some random values on a MQTT topic in the AzureIoT Hub.
 When data arrive to the MQTT Broker the Broker sends it to a Web Application that shows the data trend in a 
 chart. 
-# How to Use
+## How to Use
 Downoald the Repository, install all the node dependencies that you'll need by using the command 
 `npm install`.
 Now add your connection string inside a `variable.js` module in the SetUp folder
