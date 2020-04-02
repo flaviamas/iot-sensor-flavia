@@ -54,5 +54,5 @@ The transparent gateway is the element that subscribes to the MQTT-SN broker and
 - [Hands-on Tutorial](https://www.linkedin.com/pulse/environment-sensors-azureiot-hub-mqtt-protocol-flavia-masoni/?published=t)
 - [Demo Video](https://www.youtube.com/watch?v=fYQqH0yyTSQ&t=6s)
 ## Links for the Second Homework
-- [Hands-on Tutorial]()
+- [Hands-on Tutorial](https://www.linkedin.com/posts/flavia-masoni_python-mqtt-azure-activity-6651499074790932480-wcHt)
 - [Demo Video](https://youtu.be/9TTQIUp1_iU)
