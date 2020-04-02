@@ -1,6 +1,6 @@
 
-
-# Sending sensor data to Azure IoT HUB using MQTT 
+# Homework 1
+## Sending sensor data to Azure IoT HUB using MQTT 
 The project consists in the creation of an architecture based on the MQTT protocol to transmit data. The following code consists in two different publishers that send data to the MQTT Broker and then the data is visualized on a web app. The MQTT Broker is realized via AzureIoTHub. 
 ## Technologies 
 * [Azure IoT](https://azure.microsoft.com/it-it/overview/iot/)
@@ -41,8 +41,18 @@ conn_str = "HostName=################"
 ```
 Now you just have to run the python code, connect on your browser on `localhost:3000` and you'll see the real time data of your device
 
+# Homework 2
+## Creating a RIOT application to send data to the Azure Iot Hub 
+This second part of the project is about building a RIOT application and send the device data to the Azure IoT hub. The RIOT application uses the MQTT-SN protocol that runs over UDP and the Azure Hub uses the MQTT protocol that runs over TCP, so the final goal is to create a transparent gateway to connect these two components.
+## Overview
+The transparent gateway is the element that subscribes to the MQTT-SN broker and publishes the data received on the MQTT channel. The transparent Gateway is implemented in python by the use of the MQTT Paho library.  The MQTT-broker is an RSMB broker that can be found following this [link](https://github.com/eclipse/mosquitto.rsmb). To see how you can run the code follow the Hands-on tutorial below.
+
 # Other Links
+## LinkedIn Profile
+[Flavia Masoni](https://www.linkedin.com/in/flavia-masoni/)
 ## Links for the First Homework
 - [Hands-on Tutorial](https://www.linkedin.com/pulse/environment-sensors-azureiot-hub-mqtt-protocol-flavia-masoni/?published=t)
 - [Demo Video](https://www.youtube.com/watch?v=fYQqH0yyTSQ&t=6s)
 ## Links for the Second Homework
+- [Hands-on Tutorial]()
+- [Demo Video](https://youtu.be/9TTQIUp1_iU)
