@@ -10,7 +10,7 @@ The project consists in the creation of an architecture based on the MQTT protoc
 The publisher is a simulated device that publishes some random values on a MQTT topic in the AzureIoT Hub.
 When data arrive to the MQTT Broker the Broker sends it to a Web Application that shows the data trend in a 
 chart. 
-# How to Use
+## How to Use
 Downoald the Repository, install all the node dependencies that you'll need by using the command 
 `npm install`.
 Now add your connection string inside a `variable.js` module in the SetUp folder
@@ -40,9 +40,14 @@ conn_str = "HostName=################"
 
 ```
 Now you just have to run the python code, connect on your browser on `localhost:3000` and you'll see the real time data of your device
+# Environment sensor Data 
+
+
 
 # Other Links
 ## Links for the First Homework
 - [Hands-on Tutorial](https://www.linkedin.com/pulse/environment-sensors-azureiot-hub-mqtt-protocol-flavia-masoni/?published=t)
 - [Demo Video](https://www.youtube.com/watch?v=fYQqH0yyTSQ&t=6s)
 ## Links for the Second Homework
+- [Hands-on tutorial]
+- [Demo Video]
