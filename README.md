@@ -5,6 +5,6 @@ Starting from simulated data we send those data to the Azure IoT Hub and then sh
 For each assignment we modify the way we send Data to the Hub.
 Below you will find all the instruction to set up each part of this project starting from the first homework.
 ## Homeworks
-- [Homework 1](Assignment1/)
-- [Homework 2](Assignment2/)
-- [Homework 3](Assignment3/)
+- [Homework 1](tree/master/Assignment1/)
+- [Homework 2](iot-sensor-flavia/Assignment2/)
+- [Homework 3](iot-sensor-flavia/Assignment3/)
