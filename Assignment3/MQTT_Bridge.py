@@ -39,7 +39,7 @@ def on_message(client, userdata, message):
 def on_connect(client, userdata, flags, rc):
 
     print("Connected with result code "+str(rc))
-    mqttc.subscribe("device")
+    datarec.subscribe("device")
 
 
 if __name__ == "__main__":
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     ttn_port = 1883
     ttn_topic = '+/devices/+/up'
     ttn_user = 'sensor-iot-flavia'
-    ttn_key = 'ttn-account-v2.EsmXG-SRGhIPZxRp6ECMb_VbEmkuKtkaE7h8pjUuwKg'
+    ttn_key = connectionstring.appkey
     ttn_dev1 = 'iot-node'
     ttn_dev2 = 'iot-node-bis'
 
