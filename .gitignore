@@ -44,3 +44,5 @@ variable.js
 config.js
 connectionstring.py
 output.json
+
+.DS_Store
