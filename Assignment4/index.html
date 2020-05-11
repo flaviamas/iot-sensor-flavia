@@ -1,44 +1,42 @@
 <!DOCTYPE html>
 <head>
-<script>
-    let sensor = new LinearAccelerationSensorr({frequency:30});
-    sensor.start()
+  <script>
+    let sensor = new LinearAccelerationSensorr({ frequency: 30 });
+    sensor.start();
     sensor.onreading = () => {
-        document.getElementById("x").innerHTML = sensor.x;
-        document.getElementById("y").innerHTML = sensor.y;
-        document.getElementById("z").innerHTML = sensor.z;
-
+      document.getElementById("x").innerHTML = sensor.x;
+      document.getElementById("y").innerHTML = sensor.y;
+      document.getElementById("z").innerHTML = sensor.z;
     };
     sensor.onerror = (event) => {
-        console.log(event.error.name,event.error.message);
-        document.getElementById("errorname").innerHTML = "Error name: "+event.error.name;
-        document.getElementById("errormex").innerHTML = "Error message: "+event.error.message;
- };
-</script>
+      console.log(event.error.name, event.error.message);
+      document.getElementById("errorname").innerHTML =
+        "Error name: " + event.error.name;
+      document.getElementById("errormex").innerHTML =
+        "Error message: " + event.error.message;
+    };
+  </script>
 </head>
 <body>
-    <h1>Sensors</h1>
-    <p>Acceleration on x-axis</p>
-    <p>
-        <span id = "x">0</span>
-    </p>
-    <p>Acceleration on y-axis</p>
-    <p>
-        <span id = "y">0</span>
-    </p>
+  <h1>Sensors</h1>
+  <p>Acceleration on x-axis</p>
+  <p>
+    <span id="x">0</span>
+  </p>
+  <p>Acceleration on y-axis</p>
+  <p>
+    <span id="y">0</span>
+  </p>
 
-    <p>Acceleration on z-axis</p>
-    <p>
-        <span id = "z">0</span>
-    </p>
-    <p>Errors</p>
-    <p>
-        <span id = "errorname"></span>
-    </p>
-    <p>
-        <span id = "errormex"></span>
-    </p>
-
-
-
+  <p>Acceleration on z-axis</p>
+  <p>
+    <span id="z">0</span>
+  </p>
+  <p>Errors</p>
+  <p>
+    <span id="errorname"></span>
+  </p>
+  <p>
+    <span id="errormex"></span>
+  </p>
 </body>
