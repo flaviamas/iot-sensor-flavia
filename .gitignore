@@ -46,3 +46,6 @@ connectionstring.py
 output.json
 
 .DS_Store
+
+server.cert 
+server.key
