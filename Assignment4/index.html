@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
   <script>
-    let sensor = new LinearAccelerationSensorr({ frequency: 30 });
+    let sensor = new LinearAccelerationSensor({ frequency: 30 });
     sensor.start();
     sensor.onreading = () => {
       document.getElementById("x").innerHTML = sensor.x;
@@ -15,6 +15,43 @@
       document.getElementById("errormex").innerHTML =
         "Error message: " + event.error.message;
     };
+    //connection to the azure hub
+    var WebSocketClient = require("websocket").client;
+    var Paho = require("../paho-mqtt");
+    // Create a client instance
+    var client = new Paho.MQTT.Client(
+      "flavihub.azure-devices.net",
+      Number(443),
+      "dispositivo1"
+    );
+
+    // set callback handlers
+    client.onConnectionLost = onConnectionLost;
+    client.onMessageArrived = onMessageArrived;
+
+    // connect the client
+    client.connect({ onSuccess: onConnect });
+
+    // called when the client connects
+    function onConnect() {
+      // Once a connection has been made, make a subscription and send a message.
+      console.log("onConnect");
+      message = new Paho.MQTT.Message("Hello");
+      message.destinationName = "devices/dispositivo1/messages/events/";
+      client.send(message);
+    }
+
+    // called when the client loses its connection
+    function onConnectionLost(responseObject) {
+      if (responseObject.errorCode !== 0) {
+        console.log("onConnectionLost:" + responseObject.errorMessage);
+      }
+    }
+
+    // called when a message arrives
+    function onMessageArrived(message) {
+      console.log("onMessageArrived:" + message.payloadString);
+    }
   </script>
 </head>
 <body>
