@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <head>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.js"
+    integrity="sha256-oMc0oAohctV5yh/0+S+zZrzLQJdABb2tXqei8DJqwVg="
+    crossorigin="anonymous"
+  ></script>
   <script>
     let sensor = new LinearAccelerationSensor({ frequency: 30 });
     sensor.start();
@@ -15,14 +20,13 @@
       document.getElementById("errormex").innerHTML =
         "Error message: " + event.error.message;
     };
-    //connection to the azure hub
-    var WebSocketClient = require("websocket").client;
-    var Paho = require("../paho-mqtt");
+
     // Create a client instance
-    var client = new Paho.MQTT.Client(
+    var client = new Paho.Client(
       "flavihub.azure-devices.net",
       Number(443),
-      "dispositivo1"
+      "/$iothub/websocket",
+      "myDevice"
     );
 
     // set callback handlers
@@ -30,14 +34,22 @@
     client.onMessageArrived = onMessageArrived;
 
     // connect the client
-    client.connect({ onSuccess: onConnect });
+    client.connect({
+      onSuccess: onConnect,
+      userName:
+        "flavihub.azure-devices.net/dispositivo1/?api-version=2018-06-30",
+      password:
+        "SharedAccessSignature sr=flavihub.azure-devices.net&sig=JOcSsQnFMvY4073kvc1VkfdgvvBoKn2yssL%2Fs1rojrU%3D&se=1589403062&skn=iothubowner",
+      useSSL: true,
+      cleanSession: true,
+    });
 
     // called when the client connects
     function onConnect() {
       // Once a connection has been made, make a subscription and send a message.
       console.log("onConnect");
-      message = new Paho.MQTT.Message("Hello");
-      message.destinationName = "devices/dispositivo1/messages/events/";
+      message = new Paho.Message("Hello");
+      message.destinationName = "World";
       client.send(message);
     }
 
@@ -52,14 +64,15 @@
     function onMessageArrived(message) {
       console.log("onMessageArrived:" + message.payloadString);
     }
+
+    //connection to the azure hub
   </script>
 </head>
 <body>
   <h1>Sensors</h1>
   <p>Acceleration on x-axis</p>
-  <p>
-    <span id="x">0</span>
-  </p>
+  <p></p>
+  <span id="x">0</span>
   <p>Acceleration on y-axis</p>
   <p>
     <span id="y">0</span>

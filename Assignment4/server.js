@@ -3,6 +3,8 @@ var fs = require('fs')
 var https = require('https')
 var app = express()
 var path = require("path")
+var bodyParser = require('body-parser');
+
 
 
 app.get('/',function(req,res){
@@ -16,3 +18,5 @@ https.createServer({
 .listen(3000, function () {
   console.log('Example app listening on port 3000! Go to https://localhost:3000/')
 })
+
+
