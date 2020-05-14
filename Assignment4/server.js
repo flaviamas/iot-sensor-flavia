@@ -1,14 +1,21 @@
 var express = require("express");
 var fs = require("fs");
-var https = require("https");
+var http = require("http");
 var app = express();
 var path = require("path");
 var stringc = require("./connectionstr");
 var Protocol = require("azure-iot-device-mqtt").Mqtt;
 var Client = require("azure-iot-device").Client;
 var Message = require("azure-iot-device").Message;
-
 var deviceConnectionString = stringc.fcstring;
+app.use(express.static("public"));
+app.use(express.json());
+//create a server http 
+const server = http.createServer(app);
+
+server.listen(process.env.PORT || "3000", () => {
+  console.log("Listening on %d.", server.address().port);
+});
 
 // fromConnectionString must specify a transport constructor, coming from any transport package.
 var client = Client.fromConnectionString(deviceConnectionString, Protocol);
@@ -34,7 +41,7 @@ var connectCallback = function (err) {
     });
   }
 };
-
+//connect to the iothub
 client.open(connectCallback);
 
 // Helper function to print results in the console
@@ -45,9 +52,8 @@ function printResultFor(op) {
   };
 }
 
-app.use(express.static("public"));
-app.use(express.json());
 
+//show the html page as index
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname + "/index.html"));
 });
@@ -58,16 +64,3 @@ app.post("/", function (req, res) {
   client.sendEvent(message, printResultFor("send"));
   res.send("POST request to the homepage");
 });
-https
-  .createServer(
-    {
-      key: fs.readFileSync("server.key"),
-      cert: fs.readFileSync("server.cert"),
-    },
-    app
-  )
-  .listen(3000, function () {
-    console.log(
-      "Example app listening on port 3000! Go to https://localhost:3000/"
-    );
-  });
