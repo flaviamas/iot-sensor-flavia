@@ -21,51 +21,6 @@
         "Error message: " + event.error.message;
     };
 
-    // Create a client instance
-    var client = new Paho.Client(
-      "flavihub.azure-devices.net",
-      Number(443),
-      "/$iothub/websocket",
-      "myDevice"
-    );
-
-    // set callback handlers
-    client.onConnectionLost = onConnectionLost;
-    client.onMessageArrived = onMessageArrived;
-
-    // connect the client
-    client.connect({
-      onSuccess: onConnect,
-      userName:
-        "flavihub.azure-devices.net/dispositivo1/?api-version=2018-06-30",
-      password:
-        "SharedAccessSignature sr=flavihub.azure-devices.net&sig=JOcSsQnFMvY4073kvc1VkfdgvvBoKn2yssL%2Fs1rojrU%3D&se=1589403062&skn=iothubowner",
-      useSSL: true,
-      cleanSession: true,
-    });
-
-    // called when the client connects
-    function onConnect() {
-      // Once a connection has been made, make a subscription and send a message.
-      console.log("onConnect");
-      message = new Paho.Message("Hello");
-      message.destinationName = "World";
-      client.send(message);
-    }
-
-    // called when the client loses its connection
-    function onConnectionLost(responseObject) {
-      if (responseObject.errorCode !== 0) {
-        console.log("onConnectionLost:" + responseObject.errorMessage);
-      }
-    }
-
-    // called when a message arrives
-    function onMessageArrived(message) {
-      console.log("onMessageArrived:" + message.payloadString);
-    }
-
-    //connection to the azure hub
   </script>
 </head>
 <body>
