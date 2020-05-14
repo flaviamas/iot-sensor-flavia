@@ -1,27 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.js"
-    integrity="sha256-oMc0oAohctV5yh/0+S+zZrzLQJdABb2tXqei8DJqwVg="
-    crossorigin="anonymous"
-  ></script>
-  <script>
-    let sensor = new LinearAccelerationSensor({ frequency: 30 });
-    sensor.start();
-    sensor.onreading = () => {
-      document.getElementById("x").innerHTML = sensor.x;
-      document.getElementById("y").innerHTML = sensor.y;
-      document.getElementById("z").innerHTML = sensor.z;
-    };
-    sensor.onerror = (event) => {
-      console.log(event.error.name, event.error.message);
-      document.getElementById("errorname").innerHTML =
-        "Error name: " + event.error.name;
-      document.getElementById("errormex").innerHTML =
-        "Error message: " + event.error.message;
-    };
-
-  </script>
+  <script src="sensor.js" type="module"></script>
 </head>
 <body>
   <h1>Sensors</h1>
@@ -44,4 +23,6 @@
   <p>
     <span id="errormex"></span>
   </p>
+
+  <p><p>You Are: </p><span id="Status"></span></p>
 </body>
