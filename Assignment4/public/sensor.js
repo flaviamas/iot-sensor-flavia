@@ -9,17 +9,18 @@ linear_acceleration.onreading = () => {
   document.getElementById("x").innerHTML = x;
   document.getElementById("y").innerHTML = y;
   document.getElementById("z").innerHTML = z;
-  let telemetry = { x: x, y: y, z: z };
+  let status = Math.sqrt(x * x + y * y + z * z);
+  if (status > 0.5) status = "Moving";
+  else status = "Still";
+  let telemetry = { x: x, y: y, z: z, moving: status };
+
   fetch("/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(telemetry),
-  }).then((response) => {
-    console.log("Sent!");
-    // Update HTML page with results
-  });
+  })
 };
 
 linear_acceleration.onerror = (event) => {
