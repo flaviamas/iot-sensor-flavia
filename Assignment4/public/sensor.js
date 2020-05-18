@@ -12,6 +12,7 @@ linear_acceleration.onreading = () => {
   let status = Math.sqrt(x * x + y * y + z * z);
   if (status > 0.5) status = "Moving";
   else status = "Still";
+  document.getElementById("status").innerHTML = status;
   let telemetry = { x: x, y: y, z: z, moving: status };
 
   fetch("/", {
@@ -20,7 +21,7 @@ linear_acceleration.onreading = () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(telemetry),
-  })
+  });
 };
 
 linear_acceleration.onerror = (event) => {

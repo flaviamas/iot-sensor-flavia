@@ -7,7 +7,7 @@ var stringc = require("./connectionstr");
 var Protocol = require("azure-iot-device-mqtt").Mqtt;
 var Client = require("azure-iot-device").Client;
 var Message = require("azure-iot-device").Message;
-var deviceConnectionString = stringc.fcstring;
+var deviceConnectionString = stringc.fcstring();
 app.use(express.static("public"));
 app.use(express.json());
 //create a server http 
